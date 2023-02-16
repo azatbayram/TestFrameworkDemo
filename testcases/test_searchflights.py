@@ -50,8 +50,6 @@ class TestSearchFlights():
         search_button=driver.find_element(By.XPATH, "//input[@value='Search Flights']")
         search_button.click()
 
-        time.sleep(3)
-        driver.quit()
 
 demoTest=TestSearchFlights
 demoTest.test_seach_fights()
