@@ -5,12 +5,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 
 @pytest.fixture(scope="class")
-def setup():
+def setup(request):
     driver = webdriver.Chrome()
     driver.get("https://www.yatra.com/")
     driver.maximize_window()
     wait = WebDriverWait(driver, 10)
     driver.implicitly_wait(10)
+    request.cls.driver=driver
+    request.cls.wait=wait
 
     yield
     time.sleep(3)

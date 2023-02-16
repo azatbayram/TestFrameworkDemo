@@ -14,7 +14,7 @@ class TestSearchFlights():
 
 
         #Providing going from location
-        depart_from=driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_city']")
+        depart_from=self.driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_city']")
         depart_from.click()
         time.sleep(2)
         depart_from.clear()
@@ -22,12 +22,12 @@ class TestSearchFlights():
         depart_from.send_keys(Keys.ENTER)
         time.sleep(3)
         # Providing going to location
-        going_to=driver.find_element(By.XPATH, "//input[@id='BE_flight_arrival_city']")
+        going_to=self.driver.find_element(By.XPATH, "//input[@id='BE_flight_arrival_city']")
         going_to.click()
         time.sleep(2)
         going_to.send_keys("New York")
 
-        result_list=driver.find_elements(By.XPATH, "//div[@class='viewport']//div/li")
+        result_list=self.driver.find_elements(By.XPATH, "//div[@class='viewport']//div/li")
 
         for result in result_list:
             #print(result.text)
@@ -35,10 +35,10 @@ class TestSearchFlights():
                 result.click()
                 break
         #To resolve sync issue
-        depart_date=wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='BE_flight_origin_date']")))
+        depart_date=self.wait.until(EC.element_to_be_clickable((By.XPATH, "//input[@id='BE_flight_origin_date']")))
         depart_date.click()
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']")))
-        date_list=driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_date']").find_elements(By.XPATH, "//div[@id='monthWrapper']//tbody//td")
+        self.wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']")))
+        date_list=self.driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_date']").find_elements(By.XPATH, "//div[@id='monthWrapper']//tbody//td")
 
         #Select departure date
         for date in date_list:
@@ -47,9 +47,5 @@ class TestSearchFlights():
                 break
         time.sleep(3)
         #Click on search button
-        search_button=driver.find_element(By.XPATH, "//input[@value='Search Flights']")
+        search_button=self.driver.find_element(By.XPATH, "//input[@value='Search Flights']")
         search_button.click()
-
-
-demoTest=TestSearchFlights
-demoTest.test_seach_fights()
