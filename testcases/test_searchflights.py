@@ -6,9 +6,10 @@ from pages.search_flights_results_page import SearchFlightResultsPage
 
 @pytest.mark.usefixtures("setup")
 class TestSearchFlights():
+    @pytest.fixture(autouse=True)
+    def class_setup(self):
+        self.launchpage=LaunchPage(self.driver, self.wait)
     def test_seach_fights(self):
-
-        launchpage=LaunchPage(self.driver, self.wait)
-        launchpage.searchFlights("New Delhi", "New York", "22/02/2023")
+        self.launchpage.searchFlights("New Delhi", "New York", "22/02/2023")
 
 
