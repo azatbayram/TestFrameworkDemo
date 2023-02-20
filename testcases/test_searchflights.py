@@ -13,7 +13,8 @@ class TestSearchFlights():
         #To resolve sync issue
         #Click on search button
         launchpage=LaunchPage(self.driver, self.wait)
-        launchpage.departFrom("New Delhi")
+        #launchpage.departFrom("New Delhi")
+        launchpage.enterDepartFromLocation("New Delhi")
         launchpage.goingTo("New York")
         launchpage.selectDate("21/02/2023")
         launchpage.clickSearch()
