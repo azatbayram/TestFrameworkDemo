@@ -10,6 +10,14 @@ class LaunchPage(BaseDriver):
         self.driver=driver
         self.wait=wait
 
+    #Locators
+    DEPART_FROM_FIELD = "//input[@id='BE_flight_origin_city']"
+    GOING_TO_FIELD = "//input[@id='BE_flight_arrival_city']"
+    GOING_TO_RESULT_LIST = "//div[@class='viewport']//div[1]/li"
+    SELECT_DATE_FIELD = "//input[@id='BE_flight_origin_date']"
+    ALL_DATES = "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']"
+    SEARCH_BUTTON = "//input[@value='Search Flights']"
+
     def departFrom(self, departLocation):
         depart_from = self.driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_city']")
         depart_from.click()
