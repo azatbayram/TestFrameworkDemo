@@ -1,8 +1,8 @@
-from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from base.base_driver import BaseDriver
+import logging
+from utilities.utils import Utils
 
 class SearchFlightResultsPage(BaseDriver):
 
@@ -33,10 +33,15 @@ class SearchFlightResultsPage(BaseDriver):
     def filter_flights_by_stop(self, by_stop):
         if by_stop == "1 Stop":
             self.get_filter_by_one_stop_icon().click()
+            self.log.warning("Selected flights with 1 stop")
             time.sleep(2)
         elif by_stop == "2 Stop":
             self.get_filter_by_two_stop_icon().click()
+            self.log.warning("Selected flights with 2 stop")
             time.sleep(2)
         elif by_stop == "Non Stop":
             self.get_filter_by_non_stop_icon().click()
+            self.log.warning("Selected non stop flights")
             time.sleep(2)
+        else:
+            self.log.warning("Please provide valid filter option")
