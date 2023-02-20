@@ -18,14 +18,22 @@ class LaunchPage(BaseDriver):
     ALL_DATES = "//div[@id='monthWrapper']//tbody//td[@class!='inActiveTD']"
     SEARCH_BUTTON = "//input[@value='Search Flights']"
 
-    def departFrom(self, departLocation):
-        depart_from = self.driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_city']")
-        depart_from.click()
-        time.sleep(2)
-        depart_from.clear()
-        depart_from.send_keys(departLocation)
-        depart_from.send_keys(Keys.ENTER)
-        time.sleep(3)
+    def getDepartFromField(self):
+        return self.wait_until_element_is_clickable(By.XPATH, self.DEPART_FROM_FIELD)
+
+    def enterDepartFromLocation(self, departLocation):
+        self.getDepartFromField().click()
+        self.getDepartFromField().send_keys(departLocation)
+        self.getDepartFromField().send_keys(Keys.ENTER)
+
+   # def departFrom(self, departLocation):
+    #    depart_from = self.driver.find_element(By.XPATH, "//input[@id='BE_flight_origin_city']")
+    #    depart_from.click()
+    #    time.sleep(2)
+    #    depart_from.clear()
+    #    depart_from.send_keys(departLocation)
+    #    depart_from.send_keys(Keys.ENTER)
+    #    time.sleep(3)
 
     def goingTo(self, goingtoLocation):
         going_to = self.driver.find_element(By.XPATH, "//input[@id='BE_flight_arrival_city']")
