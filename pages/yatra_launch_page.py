@@ -1,10 +1,16 @@
+import logging
+
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from base.base_driver import BaseDriver
+from utilities.utils import Utils
 
 class LaunchPage(BaseDriver):
+
+    log=Utils.custom_logger(logLevel=logging.DEBUG)
+
     def __init__(self, driver, wait):
         super().__init__(driver)
         self.driver=driver
@@ -38,15 +44,19 @@ class LaunchPage(BaseDriver):
 
     def enterDepartFromLocation(self, departLocation):
         self.getDepartFromField().click()
+        self.log.info("Click on going from")
         time.sleep(2)
         self.getDepartFromField().send_keys(departLocation)
+        self.log.info("Send departure location")
         time.sleep(2)
         self.getDepartFromField().send_keys(Keys.ENTER)
 
     def enterGoingToLocation(self, goingtolocation):
         self.getGoingToField().click()
+        self.log.info("Click on going to")
         time.sleep(2)
         self.getGoingToField().send_keys(goingtolocation)
+        self.log.info("Send going to location")
         time.sleep(2)
         search_results = self.getGoingToResults()
         for results in search_results:
